@@ -1,0 +1,10 @@
+spring:
+  datasource:
+      username: sunday
+      password: tyokou*1
+      url: jdbc:mysql://rm-m5ep226094q572j7xyo.mysql.rds.aliyuncs.com:3306/blog?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+      driverClassName: com.mysql.cj.jdbc.Driver
+  mvc:
+    static-path-pattern: static/**
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
