@@ -1,10 +1,27 @@
 spring:
   datasource:
-      username: sunday
-      password: tyokou*1
-      url: jdbc:mysql://rm-m5ep226094q572j7xyo.mysql.rds.aliyuncs.com:3306/blog?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
-      driverClassName: com.mysql.cj.jdbc.Driver
-  mvc:
-    static-path-pattern: static/**
+    username: sunday
+    password: tyokou*1
+    url: jdbc:mysql://rm-m5ep226094q572j7xyo.mysql.rds.aliyuncs.com:3306/blog?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    driverClassName: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      # 初始化建立连接数
+      initial-size: 5
+      # 最大连接数
+      max-active: 20
+  banner:
+    location: static/banner.txt
 mybatis:
-  mapper-locations: classpath:mapper/*Mapper.xml
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.sunday.blog.sundayblog.pojo
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com:
+      sunday:
+        blog:
+          sundayblog:
+            mapper: debug
