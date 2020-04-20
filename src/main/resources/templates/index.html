@@ -13,35 +13,7 @@
 <![endif]-->
 </head>
 <body>
-  <div class="header">
-    <div class="menu-btn">
-      <div class="menu"></div>
-    </div>
-    <h1 class="logo">
-      <a href="index.html">
-        <span>MYBLOG</span>
-        <img th:src="@{/static/img/logo.png}">
-      </a>
-    </h1>
-    <div class="nav">
-      <a href="index.html" class="active">文章</a>
-      <a href="whisper.html">微语</a>
-      <a href="leacots.html">留言</a>
-      <a href="album.html">相册</a>
-      <a href="about.html">关于</a>
-    </div>
-    <ul class="layui-nav header-down-nav">
-      <li class="layui-nav-item"><a href="index.html" class="active">文章</a></li>
-      <li class="layui-nav-item"><a href="whisper.html">微语</a></li>
-      <li class="layui-nav-item"><a href="leacots.html">留言</a></li>
-      <li class="layui-nav-item"><a href="album.html">相册</a></li>
-      <li class="layui-nav-item"><a href="about.html">关于</a></li>
-    </ul>
-    <p class="welcome-text">
-      欢迎来到<span class="name">小明</span>的博客~
-    </p>
-  </div>
-
+  <div th:insert="~{header :: head}"></div>
   <div class="banner">
     <div class="cont w1000">
       <div class="title">
@@ -155,22 +127,8 @@
     </div>
   </div>
 
-  <div class="footer-wrap">
-    <div class="footer w1000">
-      <div class="qrcode">
-        <img th:src="@{/static/img/erweima.jpg}">
-      </div>
-      <div class="practice-mode">
-        <img th:src="@{/static/img/down_img.jpg}">
-        <div class="text">
-          <h4 class="title">我的联系方式</h4>
-          <p>微信<span class="WeChat">1234567890</span></p>
-          <p>手机<span class="iphone">1234567890</span></p>
-          <p>邮箱<span class="email">1234567890@qq.com</span></p>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div th:insert="~{footer :: foot}"></div>
+
   <script type="text/javascript" th:src="@{/static/layui/layui.js}"></script>
   <script type="text/javascript">
     layui.config({
