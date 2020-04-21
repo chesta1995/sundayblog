@@ -21,7 +21,7 @@ public class IndexController {
      * @param 
     * @return java.lang.String
     **/
-    @RequestMapping("index")
+    @RequestMapping("/index")
     public String index() {
         return "index";
     }
