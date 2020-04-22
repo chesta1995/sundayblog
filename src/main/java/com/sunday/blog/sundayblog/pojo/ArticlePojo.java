@@ -19,7 +19,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Article {
+public class ArticlePojo {
     /**
      * 文章id
      */
@@ -36,10 +36,10 @@ public class Article {
     @ApiModelProperty("文章类型")
     private Integer type;
     /**
-     * 文章内容
+     * markdown文章内容
      */
-    @ApiModelProperty("文章内容")
-    private String content;
+    @ApiModelProperty("MarkDown文章内容")
+    private String contentMarkdown;
     /**
      * 文章图片
      */
@@ -60,4 +60,9 @@ public class Article {
      */
     @ApiModelProperty("文章更新时间")
     private Date modifyTime;
+    /**
+     * HTML内容
+     */
+    @ApiModelProperty("HTML内容")
+    private String contentHtml;
 }

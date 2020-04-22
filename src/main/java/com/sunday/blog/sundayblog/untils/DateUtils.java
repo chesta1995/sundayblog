@@ -10,7 +10,11 @@ import java.text.SimpleDateFormat;
  * @Version 1.0
  */
 public class DateUtils {
-    public static String  getSysDate(){
+    /**
+     * 获取系统日期
+     * @return
+     */
+    public static String getSysDate() {
         long millis = System.currentTimeMillis();
         String dateStr = new SimpleDateFormat("YYYY-MM-dd").format(millis);
         return dateStr;

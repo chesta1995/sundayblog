@@ -2,19 +2,23 @@ package com.sunday.blog.sundayblog.controller;
 
 import com.sunday.blog.sundayblog.constant.Constant;
 import com.sunday.blog.sundayblog.dto.MDResultDto;
+import com.sunday.blog.sundayblog.pojo.ArticlePojo;
+import com.sunday.blog.sundayblog.service.ArticleService;
 import com.sunday.blog.sundayblog.untils.DateUtils;
 import com.sunday.blog.sundayblog.untils.FileUtils;
 import io.swagger.annotations.Api;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.util.Date;
+import java.util.Enumeration;
+import java.util.Map;
 
 /**
  * @ClassName ArticleController
@@ -27,6 +31,12 @@ import java.io.File;
 @Api("文章视图控制器")
 @RequestMapping("/article")
 public class ArticleController {
+
+    /**
+     * article service
+     */
+    @Autowired
+    private ArticleService articleService;
 
     /**
      * @param
@@ -75,5 +85,26 @@ public class ArticleController {
             return new MDResultDto(1, "", "");
         }
         return successResult;
+    }
+
+    @PostMapping(value = "/uploadFile")
+    public String fileUpload(HttpServletRequest request, Model model) {
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        System.out.println(request.getParameter("test-editormd-markdown-doc"));
+        System.out.println(request.getParameter("test-editormd-html-code"));
+        String markdownDoc = request.getParameter("test-editormd-markdown-doc");
+        String HTMLDoc = request.getParameter("test-editormd-html-code");
+        String title = request.getParameter("title");
+        ArticlePojo article = new ArticlePojo();
+        article.setAuthor("sunday");
+        article.setContentHtml(HTMLDoc);
+        article.setContentMarkdown(markdownDoc);
+        article.setTitle(title);
+        article.setType(1);
+        article.setInsertTime(new Date());
+        article.setModifyTime(article.getInsertTime());
+        articleService.articleInsert(article);
+        model.addAttribute("article",article);
+        return "writeArticle";
     }
 }
