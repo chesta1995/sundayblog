@@ -5,22 +5,40 @@
 <mapper namespace="com.sunday.blog.sundayblog.mapper.ArticleMapper">
 
     <insert id="articleInsert" parameterType="ArticlePojo">
-        insert into article (
-            title,
-            type,
-            content_markdown,
-            content_html,
-            author,
-            insert_time,
-            modify_time
-        ) values (
-            #{title},
-            #{type},
-            #{contentMarkdown},
-            #{contentHtml},
-            #{author},
-            #{insertTime},
-            #{modifyTime}
+        INSERT INTO ARTICLE (
+            TITLE,
+            TYPE,
+            CONTENT_MARKDOWN,
+            CONTENT_HTML,
+            AUTHOR,
+            INSERT_TIME,
+            MODIFY_TIME
+        ) VALUES (
+            #{TITLE},
+            #{TYPE},
+            #{CONTENTMARKDOWN},
+            #{CONTENTHTML},
+            #{AUTHOR},
+            #{INSERTTIME},
+            #{MODIFYTIME}
         )
     </insert>
+
+    <select id="getArticleList" parameterType="INTEGER" resultType="ArticleResultDto">
+        SELECT
+            A.ID ID,
+            A.TITLE TITLE,
+            A.CONTENT_MARKDOWN CONTENT_MARKDOWN,
+            A.CONTENT_HTML CONTENT_HTML,
+            A.AUTHOR AUTHOR,
+            B.TYPE_NAME TYPE_NAME
+        FROM
+            ARTICLE A
+        LEFT JOIN
+            ARTICLE_TYPE B
+        ON
+            A.TYPE = B.ID
+        WHERE
+            A.TYPE = #{id}
+    </select>
 </mapper>

@@ -87,15 +87,21 @@ public class ArticleController {
         return successResult;
     }
 
+    /**
+     * @param request
+     * @param model
+     * @return java.lang.String
+     * @Description 保存文件数据库
+     * @Date 12:03 2020/4/22
+     **/
     @PostMapping(value = "/uploadFile")
     public String fileUpload(HttpServletRequest request, Model model) {
-        Map<String, String[]> parameterMap = request.getParameterMap();
-        System.out.println(request.getParameter("test-editormd-markdown-doc"));
-        System.out.println(request.getParameter("test-editormd-html-code"));
+        // 获取页面数据
         String markdownDoc = request.getParameter("test-editormd-markdown-doc");
         String HTMLDoc = request.getParameter("test-editormd-html-code");
         String title = request.getParameter("title");
         ArticlePojo article = new ArticlePojo();
+        // 设置article实体类
         article.setAuthor("sunday");
         article.setContentHtml(HTMLDoc);
         article.setContentMarkdown(markdownDoc);
@@ -103,8 +109,9 @@ public class ArticleController {
         article.setType(1);
         article.setInsertTime(new Date());
         article.setModifyTime(article.getInsertTime());
+        // 插入数据
         articleService.articleInsert(article);
-        model.addAttribute("article",article);
+        model.addAttribute("article", article);
         return "writeArticle";
     }
 }

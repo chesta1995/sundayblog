@@ -14,7 +14,7 @@ spring:
     location: static/banner.txt
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.sunday.blog.sundayblog.pojo
+  type-aliases-package: com.sunday.blog.sundayblog.pojo,com.sunday.blog.sundayblog.dto
   configuration:
     map-underscore-to-camel-case: true
 
